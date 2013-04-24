@@ -26,17 +26,23 @@ public class MainActivity extends Activity {
 	Button b6;
 	private static String values = ""; /* Empty String to locate the fetched data */
 	private static String bValues = ""; 
+	String[] commands = {"adb shell", "echo 'boot-recovery ' > /cache/recovery/command",
+			"adb shell", "echo '--update_package=SDCARD:update.zip'" + ">> /cache/recovery/command",
+			"adb shell", "reboot recovery"};
 	
 	
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		String[] commands = {"adb shell", "echo 'boot-recovery ' > /cache/recovery/command",
-			"adb shell", "echo '--update_package=SDCARD:update.zip'" + ">> /cache/recovery/command",
-			"adb shell", "reboot recovery"};
 		setContentView(R.layout.activity_main);
 		findViewsById();
+		try {
+			Process process = Runtime.getRuntime().exec("su");
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		b1.setOnClickListener(new OnClickListener(){
 			
 			/* Simple command to reboot to recovery without root access. 
