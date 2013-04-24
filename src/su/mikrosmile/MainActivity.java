@@ -26,14 +26,15 @@ public class MainActivity extends Activity {
 	Button b6;
 	private static String values = ""; /* Empty String to locate the fetched data */
 	private static String bValues = ""; 
-	String[] commands = {"adb shell", "echo 'boot-recovery ' > /cache/recovery/command",
-			"adb shell", "echo '--update_package=SDCARD:update.zip'" + ">> /cache/recovery/command",
-			"adb shell", "reboot recovery"};
+	
 	
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		String[] commands = {"adb shell", "echo 'boot-recovery ' > /cache/recovery/command",
+			"adb shell", "echo '--update_package=SDCARD:update.zip'" + ">> /cache/recovery/command",
+			"adb shell", "reboot recovery"};
 		setContentView(R.layout.activity_main);
 		findViewsById();
 		b1.setOnClickListener(new OnClickListener(){
@@ -59,6 +60,7 @@ public class MainActivity extends Activity {
 			@Override
 			public void onClick(View v) {
 				try {
+				
 					/*
 					 * Here the method RunSu and the command array will be
 					 * run together
